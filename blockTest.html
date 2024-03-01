@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Block Editor</title>
+<style>
+  .block 
+  {
+    width: 150px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  #canvas 
+  {
+    width: 400px;
+    height: 300px;
+    border: 1px solid black;
+    position: relative;
+  }
+
+  #trashCan 
+  {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="block1" class="block" draggable="true" ondragstart="drag(event, 'block1')">set pin 
+    <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+    </select>
+    <select>
+        <option>AAN</option>
+        <option>UIT</option>
+    </select>
+</div>
+
+<div id="block2" class="block" draggable="true" ondragstart="drag(event, 'block2')">lees pin 
+    <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+    </select>
+</div>
+
+<div id="canvas" ondrop="drop(event)" ondragstart="drag(event)" ondragover="allowDrop(event)"></div>
+<div id="trashCan" ondrop="ifClickedBlockInCanvasDelete(event)" ondragover="allowDrop(event)"></div>
+
+<script>
+    let lastBlockID = 0;
+    let clickedOnBlock = null;
+    let currentElementID = null;
+    const blockList = [];
+
+    function drag(event)
+    {
+        drag(event, event.target.blockID);
+    }
+
+    function drag(event, id) 
+    {
+        clickedOnBlock = event.target;
+        currentElementID = id;
+        
+        event.dataTransfer.setData('text/plain', 'move_forward');
+    }
+
+    function allowDrop(event) 
+    {
+        event.preventDefault();
+    }
+ 
+    function drop(event) 
+    {
+        const position = getBlockPostition(event);
+
+        console.log(position);
+        drawBlock(clickedOnBlock.blockID, position, event);
+    }
+
+    function getBlockPostition(event)
+    {
+        return position = 
+        {
+            x: event.clientX - event.target.offsetLeft,
+            y: event.clientY - event.target.offsetTop
+        };
+    }
+
+    function drawBlock(position, event) 
+    {
+        drawBlock(clickedOnBlock.blockID, position, event);
+    }
+
+    function drawBlock(id, position, event) 
+    {
+        setBlock(id);
+        ifClickedBlockInCanvasDelete(event);
+    }
+
+    function ifClickedBlockInCanvasDelete(event)  
+    {
+        const canvas = document.getElementById('canvas');
+
+        if (clickedOnBlock.parentNode === canvas) 
+        {
+            const blockID = clickedOnBlock.blockID;
+
+            removeBlockFromBlockList(blockID);
+            canvas.removeChild(clickedOnBlock);
+        }
+    }
+
+    function removeBlockFromBlockList(blockID)
+    {
+        const blockIndex = blockList.findIndex(block => block.blockID === blockID);
+            
+        if (blockIndex !== -1) 
+        {
+            blockList.splice(blockIndex, 1); // Remove the block from the blockList array
+        }
+        console.log("size: " + blockList.length.toString());
+    }
+
+    function setBlock(blockName)
+    {
+        const block = document.getElementById(blockName).cloneNode(true);
+        block.style.position = 'absolute';
+        block.style.left = position.x + 'px';
+        block.style.top = position.y + 'px';
+        block.setAttribute('draggable', true);
+        block.addEventListener('dragstart', drag);
+        block.blockID = blockName + lastBlockID;
+        block.id = currentElementID;
+        document.getElementById('canvas').appendChild(block);
+
+        lastBlockID++;
+        blockList.push(block);
+    }
+</script>
+
+</body>
+</html>

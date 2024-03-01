@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="main.js"></script>
+
+    <title>Uno</title>
+</head>
+<body>
+
+    <div class="editor-container">
+        
+        <div class="editor-header">
+            <h1>Uno</h1>
+        </div>
+
+        <div id="drag-container" >
+            <div id="canvas" class="canvas" ondrop="drop(event)" ondragstart="drag(event)" ondragover="allowDrop(event)"></div>
+        </div>
+
+        <div class="block-container">
+            <h2>Blocks</h2>
+
+            <div id="startBlock"    class="block" draggable="true" ondragstart="drag(event, 'startBlock')"   >Start     </div>
+            <div id="delayBlock"    class="block" draggable="true" ondragstart="drag(event, 'delayBlock')"   >Wacht     </div>
+            <div id="set_pinBlock"  class="block" draggable="true" ondragstart="drag(event, 'set_pinBlock')" >zet pin   </div>
+            <div id="read_pinBlock" class="block" draggable="true" ondragstart="drag(event, 'read_pinBlock')">lees pin  </div>
+
+            <button class="button">test</button>
+            <button class="button">Start</button>
+
+            <div id="debug1"></div>
+            <div id="debug2"></div>
+
+            <div id="trashCan" ondrop="ifClickedBlockInCanvasDelete(event)" ondragover="allowDrop(event)">VERWIJDER BLOK</div>
+        </div>
+
+    </div>
+
+</body>
+</html>

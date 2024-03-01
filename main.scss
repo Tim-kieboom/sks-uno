@@ -1,0 +1,120 @@
+:root
+{
+    --block-color: #ffd901;
+    --startBlock-color: var(--block-color);
+}
+
+$block-color: var(--block-color);
+$startBlock-color: var(--startBlock-color);
+
+%button
+{
+    background-color: #4CAF50;
+    color: white;
+    border: #ccc;
+    border-radius: 3px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+body 
+{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.editor-container 
+{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .editor-header 
+    {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #drag-container 
+    {
+        background-color: #f1f1f1;
+    }
+
+    .block-container 
+    {
+        position: absolute;
+        height: 80%;
+        bottom: 0;
+        left: 0;
+        background-color: #f1f1f1;
+        box-shadow: 4px 4px rgba(173, 216, 230, 0.4);
+        border-radius: 6px;
+        padding: 10px;
+
+        //only for select menu
+        #startBlock
+        {
+            background-color: $startBlock-color;
+        }
+        
+        .block:hover 
+        {
+            background-color: #FFEA70;
+        }
+        
+        #trashCan
+        {
+            @extend %button;
+    
+            cursor:default;
+            background-color: #c17b66db;
+            border: 2px solid #af634cc1;
+        }
+    }
+}
+
+.canvas 
+{
+    position: absolute;
+    right: 200px;
+    width: 80%;
+    height: 80%;
+    background-color: rgb(224, 224, 224);
+    box-shadow: 2px 2px rgba(173, 216, 230, 0.614);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.block 
+{
+    background-color: $block-color;
+    border: 1px solid rgba(196, 194, 194, 0.253);
+    box-shadow: 1px 1px lightblue;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    cursor: grab;
+}
+
+.block:hover
+{
+    cursor: pointer;
+}
+
+.button 
+{
+    @extend %button;
+}
+
+#blockGroup
+{
+    background-color: rgba(255, 166, 0, 0.454);
+    padding: 5px 10px;
+    border-radius: 10px;
+}

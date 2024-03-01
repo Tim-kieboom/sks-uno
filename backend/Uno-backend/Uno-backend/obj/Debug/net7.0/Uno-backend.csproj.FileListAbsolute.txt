@@ -1,0 +1,14 @@
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\bin\Debug\net7.0\Uno-backend.exe
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\bin\Debug\net7.0\Uno-backend.deps.json
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\bin\Debug\net7.0\Uno-backend.runtimeconfig.json
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\bin\Debug\net7.0\Uno-backend.dll
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\bin\Debug\net7.0\Uno-backend.pdb
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.AssemblyInfoInputs.cache
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.AssemblyInfo.cs
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.csproj.CoreCompileInputs.cache
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.dll
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\refint\Uno-backend.dll
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.pdb
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\Uno-backend.genruntimeconfig.cache
+C:\Users\tim_k\OneDrive\Bureaublad\tim\trainProgramming\sks uno\backend\Uno-backend\Uno-backend\obj\Debug\net7.0\ref\Uno-backend.dll
