@@ -1,6 +1,6 @@
 :root {
   --block-color: #ffd901;
-  --startBlock-color: var(--block-color);
+  --startBlock-color: #3f7e1a;
 }
 
 .editor-container .block-container #trashCan, .button {

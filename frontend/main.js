@@ -1,8 +1,10 @@
+import getRGB from "./frontend/color.js";
+
 let lastBlockID = 0;
 let blockGroup = null;
 let clickedOnBlock = null;
 
-let isStartInCanvas
+let isStartInCanvas = false;
 
 let isCurserOverBlock = false;
 let overBlockPosistion = {x: 0, y: 0};
@@ -34,7 +36,9 @@ function drop(event)
         const startBlock = document.getElementById('startBlock');
 
         startBlock.draggable = false;
-        document.documentElement.style.setProperty('--startBlock-color', 'red');
+        const rgb = getRGB('--startBlock-color');
+        console.log(rgb);
+        document.documentElement.style.setProperty('--startBlock-color', 'rgba(${rgb.R}, &{rgb.G}, &{rgb.B}, 0.3)');
     }
 
     if(CurserOverBlock(blockGroup, event))
@@ -61,7 +65,7 @@ function ifClickedBlockInCanvasDelete()
 {
     const canvas = document.getElementById('canvas');
 
-    if (clickedOnBlock.parentNode === canvas) 
+    if (clickedOnBlock.parentNode === canvas || clickedOnBlock.parentNode === blockGroup) 
     {
         removeBlockFromBlockList();
         canvas.removeChild(clickedOnBlock);
@@ -84,26 +88,30 @@ function removeBlockFromBlockList()
     }
 }
 
-function setBlock(blockName)
-{
-    const block = document.getElementById(blockName).cloneNode(true);
-    block.setAttribute('draggable', true);
-    block.addEventListener('dragstart', drag);
-    block.blockID = lastBlockID;
-    block.id = blockName;
-    document.getElementById('canvas').appendChild(block);
-}
-
 function setBlockGroup(positionXY)
 {
     blockGroup = document.createElement('div');
     blockGroup.id = 'blockGroup';
-
+    
     blockGroup.style.position = 'absolute'; 
     blockGroup.style.left = positionXY.x + 'px';
     blockGroup.style.top = positionXY.y + 'px';
     blockGroup.setAttribute('draggable', true);
     blockGroup.addEventListener('dragstart', drag);
+}
+
+function setBlock(blockName)
+{
+    // if id == 'startBlock' then draggable = false
+    const draggable = (blockName !== 'startBlock');
+
+    const block = document.getElementById(blockName).cloneNode(true);
+    block.setAttribute('draggable', draggable);
+    block.addEventListener('dragstart', drag);
+    block.blockID = lastBlockID;
+    block.id = blockName;
+
+    document.getElementById('canvas').appendChild(block);
 }
 
 function setBlockInCanvas(blockName)
@@ -155,3 +163,4 @@ function isOverBlock(delta, rect)
 {
     return (delta.x <= rect.width && delta.y <= rect.height);
 }
+
