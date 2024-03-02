@@ -1,5 +1,6 @@
 :root {
   --block-color: #ffd901;
+  --mainGroup-color: rgba(255, 166, 0, 0.5);
   --startBlock-color: #3f7e1a;
 }
 
@@ -88,8 +89,8 @@ body {
   cursor: pointer;
 }
 
-#blockGroup {
-  background-color: rgba(255, 166, 0, 0.454);
+.blockGroup {
+  background-color: var(--mainGroup-color);
   padding: 5px 10px;
   border-radius: 10px;
 }

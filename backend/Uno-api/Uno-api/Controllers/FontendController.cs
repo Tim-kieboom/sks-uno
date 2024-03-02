@@ -22,17 +22,18 @@ namespace Uno_api.Controllers
                 return NotFound("Tasks Not Found");
 
             UnoTranslate translator = new();
+            string? code = null;
 
             try
             {
-                translator.Translate(request.Tasks);
+                code = translator.Translate(request.Tasks);
             }
             catch (Exception ex) 
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new SendArduinoCodeResponeBody(){Message = ex.Message});
             }
 
-            return Ok(new SendArduinoCodeResponeBody());
+            return Ok(new SendArduinoCodeResponeBody(){Message = code});
         }
     }
 }

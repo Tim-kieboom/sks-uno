@@ -1,6 +1,17 @@
-export function getRGB(cssVariableName) 
+function getCssVariable(htmlID)
 {
-    const cssColorValue = getComputedStyle(document.documentElement).getPropertyValue(cssVariableName);
+  return '--'+ htmlID +'-color';
+}
+
+function getRGBA_fromHtmlID(htmlID)
+{
+  const cssVariable = getCssVariable(htmlID);
+  return parseRGBA_Color(rgbValue);
+}
+
+function getRGBA_FromCss(cssVariable) 
+{
+    const cssColorValue = getComputedStyle(document.documentElement).getPropertyValue(cssVariable);
 
     const tempElement = document.createElement('div');
     tempElement.style.color = cssColorValue;
@@ -9,21 +20,38 @@ export function getRGB(cssVariableName)
     const rgbValue = getComputedStyle(tempElement).color;
     document.body.removeChild(tempElement);
 
-    return parseRGBColor(rgbValue);
+    return parseRGBA_Color(rgbValue);
 }
 
-function parseRGBColor(cssColor) 
+function parseRGBA_Color(cssColor)
 {
-    const match = cssColor.match(/rgba?\((\d+), (\d+), (\d+)(?:, [\d.]+)?\)/);
+  const match = cssColor.match(/rgba?\((\d+), (\d+), (\d+)(?:, [\d.]+)?\)/);
 
-    if (match) 
+  if (match) 
+  {
+    const A = (isNaN(match[4])) ? 1 : match[4];
+
+    return RGBA =
     {
-      return RGB =
-      {
-        R: parseInt(match[1], 10),
-        G: parseInt(match[2], 10),
-        B: parseInt(match[3], 10),
-      };
-    }
-    return null;
+      R: parseInt(match[1], 10),
+      G: parseInt(match[2], 10),
+      B: parseInt(match[3], 10),
+      A: A,
+    };
+  }
+  return null;
+}
+
+function setColor(cssVariable, rgba, transparency = null)
+{
+  const A = (transparency != null) ? transparency : rgba.A; 
+
+  document.documentElement.style.setProperty(cssVariable, "rgba("+ rgba.R +", "+ rgba.G +", "+ rgba.B +", "+ A +")");
+}
+
+function setTransparency(cssVariable, transparency)
+{
+  const rgba = getRGBA_FromCss(cssVariable);
+  console.log(rgba);
+  document.documentElement.style.setProperty(cssVariable, "rgba("+ rgba.R +", "+ rgba.G +", "+ rgba.B +", "+ transparency +")");
 }

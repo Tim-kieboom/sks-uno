@@ -1,10 +1,12 @@
 :root
 {
     --block-color: #ffd901;
+    --mainGroup-color: rgba(255, 166, 0, 0.5);
     --startBlock-color: rgba(63, 126, 26, 1);
 }
 
 $block-color: var(--block-color);
+$mainGroup-color: var(--mainGroup-color);
 $startBlock-color: var(--startBlock-color);
 
 %button
@@ -112,9 +114,9 @@ body
     @extend %button;
 }
 
-#blockGroup
+.blockGroup
 {
-    background-color: rgba(255, 166, 0, 0.454);
+    background-color: $mainGroup-color;
     padding: 5px 10px;
     border-radius: 10px;
 }
