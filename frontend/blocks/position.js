@@ -13,6 +13,7 @@ function getCurserOverElementPosition(event, element)
         overBlockPosistion = {x: rect.left, y: rect.top};
         return overBlockPosistion; 
     }
+
     return null;
 }
 

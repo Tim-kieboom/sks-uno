@@ -45,22 +45,17 @@ function ifClickedBlockInCanvasDelete()
 {
     const canvas = document.getElementById('canvas');
     const clickedOnBlock = getClickOnBlock();
-    const mainGroup = getMainGroup();
     const groupIndex = checkIfBlockInAGroup(clickedOnBlock);
 
     removeBlockFromBlockList(clickedOnBlock);
 
-    if (clickedOnBlock.parentNode === canvas) 
+    if(isInCanvas(clickedOnBlock)) 
     {
         canvas.removeChild(clickedOnBlock);
     }
-    else if(mainGroup.contains(clickedOnBlock))
+    else if(isInGroup(clickedOnBlock))
     {
-        mainGroup.removeChild(clickedOnBlock);
-    }
-    else if(groupIndex != -1)
-    {
-        getGroupList()[groupIndex].removeChild(clickedOnBlock);
+        removeblockFromGroup(groupIndex);
     }
 }
 
@@ -77,5 +72,25 @@ function removeBlockFromBlockList()
         removeMainGroup();
         setStartBlock_to(true);
     }
+}
 
+function isInGroup(block)
+{
+    const groupIndex = checkIfBlockInAGroup(block);
+
+    return (groupIndex !== -1);
+}
+
+function isInCanvas(block)
+{
+    const canvas = document.getElementById('canvas');
+
+    return (block.parentNode === canvas);
+}
+
+function isInCanvasOrGroup(block)
+{
+    const canvas = document.getElementById('canvas');
+
+    return isInCanvas(block) || isInGroup(block);
 }

@@ -3,18 +3,23 @@ let isStartBlock = false;
 
 const startBlockID_Name = 'startBlock';
 
-function drag(event, id) 
+function drag(event, id = null) 
 {
     if(id === startBlockID_Name && !isStartBlock)
+    {    
         isStartBlock = true;
-
-    clickedOnBlock = event.target;
-    clickedOnBlock.htmlID = id;
-
-    if(isStartBlock)
-    {
         setStartBlock_to(false);
     }
+
+    clickedOnBlock = event.target;
+    
+    if(id !== null)
+        clickedOnBlock.htmlID = id;
+}
+
+function dragCanvas(event)
+{
+    clickedOnBlock = event.target;
 }
 
 function allowDrop(event) 
@@ -23,6 +28,27 @@ function allowDrop(event)
 }
 
 function drop(event) 
+{
+    if(isInCanvasOrGroup(clickedOnBlock)) 
+    {
+        dropFromCanvas(event);
+    }
+    else
+    {
+        dropFromMenu(event);
+    }
+}
+
+function dropFromCanvas(event)
+{
+    const position = getBlockPostition(event);
+
+    setBlock(event, clickedOnBlock.htmlID, position);
+
+    ifClickedBlockInCanvasDelete();
+}
+
+function dropFromMenu(event)
 {
     const position = getBlockPostition(event);
 
@@ -33,7 +59,6 @@ function drop(event)
     
     setBlock(event, clickedOnBlock.htmlID, position);
 }
-
 
 function setStartBlock_to(isEnable)
 {
