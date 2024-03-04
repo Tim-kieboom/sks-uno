@@ -7,6 +7,13 @@ function removeMainGroup()
     mainGroup = null;
 }
 
+function removeGroup_byGroupID(groupID)
+{
+    const index = getIndexOfGroup_byGroupID(groupID);
+
+    blockList.splice(index-1, 1);
+}
+
 function removeblockFromGroup(index, block)
 {
     getGroup(index).removeChild(block);
@@ -48,7 +55,30 @@ function checkIfBlockInAGroup(block)
 
 function getMainGroup()
 {
+    if(mainGroup === null)
+        return null;
+
     return mainGroup;
+}
+
+function getAmountGroup()
+{
+    return groupList.length+1;
+}
+
+function getIndexOfGroup_byGroupID(groupID)
+{
+    groupList.forEach(group => 
+        {
+            if(group.id === groupID)
+                return index+1;
+        }); 
+}
+
+function getGroup_byGroupID(groupID)
+{
+    const index = getIndexOfGroup_byGroupID(groupID);
+    return getGroup(index);
 }
 
 function getGroup(index)

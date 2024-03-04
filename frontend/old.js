@@ -157,8 +157,6 @@ function CurserOverBlock(block, event)
     return false;
 }
 
-
-
 function isOverBlock(delta, rect)
 {
     return (delta.x <= rect.width && delta.y <= rect.height);

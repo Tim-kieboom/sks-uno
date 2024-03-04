@@ -5,12 +5,6 @@ const startBlockID_Name = 'startBlock';
 
 function drag(event, id = null) 
 {
-    if(id === startBlockID_Name && !isStartBlock)
-    {    
-        isStartBlock = true;
-        setStartBlock_to(false);
-    }
-
     clickedOnBlock = event.target;
     
     if(id !== null)
@@ -29,19 +23,26 @@ function allowDrop(event)
 
 function drop(event) 
 {
-    if(isInCanvasOrGroup(clickedOnBlock)) 
-    {
-        dropFromCanvas(event);
+    if(clickedOnBlock.htmlID === startBlockID_Name && !isStartBlock)
+    {    
+        isStartBlock = true;
+        setStartBlock_to(false);
     }
-    else
+
+    if(!isInCanvasOrGroup(clickedOnBlock)) 
     {
         dropFromMenu(event);
+        return;
     }
+
+    dropFromCanvas(event);
 }
 
 function dropFromCanvas(event)
 {
     const position = getBlockPostition(event);
+
+    removePosition(clickedOnBlock);
 
     setBlock(event, clickedOnBlock.htmlID, position);
 
@@ -65,7 +66,9 @@ function setStartBlock_to(isEnable)
     const transparency = (isEnable) ? 1 : 0.3;
     const cssVariable = getCssVariable(startBlockID_Name);
 
-    document.getElementById(startBlockID_Name).draggable = isEnable;
+    const draggable = (isEnable) ? 'true' : 'false';
+    document.getElementById(startBlockID_Name).setAttribute('draggeble', draggable);
+
     setTransparency(cssVariable, transparency);
 }
 

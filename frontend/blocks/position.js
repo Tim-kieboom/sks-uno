@@ -10,8 +10,22 @@ function getCurserOverElementPosition(event, element)
     if(isOverBlock(delta, rect))
     {
         console.log("blockOver");
-        overBlockPosistion = {x: rect.left, y: rect.top};
+        const overBlockPosistion = {x: rect.left, y: rect.top};
         return overBlockPosistion; 
+    }
+
+    return null;
+}
+
+function getGroupOverCurser(event)
+{
+    for(let i = 0; i < getAmountGroup(); i++)
+    {
+        const group = getGroup(i);
+        const intersectPosition = getCurserOverElementPosition(event, group);
+
+        if(intersectPosition !== null)
+            return group;
     }
 
     return null;
@@ -36,4 +50,11 @@ function setElementAtPosition(element, position)
     element.style.position = 'absolute';
     element.style.left = position.x + 'px';
     element.style.top = position.y + 'px';
+}
+
+function removePosition(element)
+{
+    element.style.position = '';
+    element.style.left = '';
+    element.style.top = '';
 }
