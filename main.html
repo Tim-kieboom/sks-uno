@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style/main.css">
+
     <script type="text/javascript" src="frontend/main.js"></script>
     <script type="text/javascript" src="frontend/color.js"></script>
+    <script type="text/javascript" src="frontend/encoder.js"></script>
     <script type="text/javascript" src="frontend/blocks/blocks.js"></script>
     <script type="text/javascript" src="frontend/blocks/position.js"></script>
     <script type="text/javascript" src="frontend/blocks/blockGroups.js"></script>
@@ -14,7 +16,6 @@
     <title>Uno</title>
 </head>
 <body>
-
     <div class="editor-container">
         
         <div class="editor-header">
@@ -24,20 +25,39 @@
         <div id="drag-container" >
             <div id="canvas" class="canvas" ondrop="drop(event)" ondragstart="dragCanvas(event)" ondragover="allowDrop(event)"></div>
         </div>
+        
 
         <div class="block-container">
             <h2>Blocks</h2>
 
             <div id="startBlock"    class="block" draggable="true" ondragstart="drag(event, 'startBlock')"   >Start     </div>
-            <div id="delayBlock"    class="block" draggable="true" ondragstart="drag(event, 'delayBlock')"   >Wacht     </div>
-            <div id="set_pinBlock"  class="block" draggable="true" ondragstart="drag(event, 'set_pinBlock')" >zet pin   </div>
-            <div id="read_pinBlock" class="block" draggable="true" ondragstart="drag(event, 'read_pinBlock')">lees pin  </div>
+        
+            <div id="delayBlock"    class="block" draggable="true" ondragstart="drag(event, 'delayBlock')"   >Wacht
+                <input class="valueInput" type="number" min="1" max="9"> seconde
+            </div>
 
-            <button class="button">test</button>
-            <button class="button">Start</button>
+            <div id="set_pinBlock"  class="block" draggable="true" ondragstart="drag(event, 'set_pinBlock')" >zet   
+                <select class="valueSelector">
+                    <option value="1">LAMP1</option>    
+                    <option value="2">MOTOR1</option>    
+                </select>
+                <select class="typeSelector">
+                    <option value="HIGH">aan</option>    
+                    <option value="LOW">uit</option>    
+                </select>
+            </div>
 
-            <div id="debug1"></div>
-            <div id="debug2"></div>
+            <div id="print_pinBlock" class="block" draggable="true" ondragstart="drag(event, 'print_pinBlock')">print  
+                <select class="valueSelector">
+                    <option value="3">KNOP1</option>        
+                    <option value="4">KNOP2</option>        
+                </select>
+            </div>
+
+            <button id="testButton" class="button" onclick="encodeBlocksToJson()">test</button>
+            <button id="startButton" class="button" onclick="sendBlockCodeToServer()">Start</button>
+
+            <div id="debug"></div>
 
             <div id="trashCan" ondrop="ifClickedBlockInCanvasDelete(event)" ondragover="allowDrop(event)">VERWIJDER BLOK</div>
         </div>

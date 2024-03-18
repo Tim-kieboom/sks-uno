@@ -22,6 +22,12 @@ $startBlock-color: var(--startBlock-color);
     margin-top: 10px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+   -webkit-appearance: none;
+}
+
 body 
 {
     font-family: Arial, sans-serif;
@@ -78,6 +84,12 @@ body
             background-color: #c17b66db;
             border: 2px solid #af634cc1;
         }
+
+        input select
+        {
+            margin-left: 20px;
+            flex-grow: 1;
+        }
     }
 }
 
@@ -102,6 +114,19 @@ body
     padding: 5px 10px;
     margin-bottom: 5px;
     cursor: grab;
+
+    input
+    {
+        width: 8px;
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button 
+        {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
 }
 
 .block:hover

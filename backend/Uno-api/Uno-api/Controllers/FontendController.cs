@@ -15,22 +15,22 @@ namespace Uno_api.Controllers
             _logger = logger;
         }
 
-        [HttpPost(Name = "sendArduinoCode")]
+        [HttpPost("sendArduinoCode")]
         public ActionResult<SendArduinoCodeResponeBody> SendArduinoCode(SendArduinoCodeRequestBody request)
         {
             if (request.Tasks == null)
                 return NotFound("Tasks Not Found");
 
             UnoTranslate translator = new();
-            string? code = null;
+            string? code;
 
             try
             {
                 code = translator.Translate(request.Tasks);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                return BadRequest(new SendArduinoCodeResponeBody(){Message = ex.Message});
+                return BadRequest(new SendArduinoCodeResponeBody() { Message = ex.Message });
             }
 
             return Ok(new SendArduinoCodeResponeBody(){Message = code});

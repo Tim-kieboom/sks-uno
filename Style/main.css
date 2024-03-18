@@ -16,6 +16,11 @@
   margin-top: 10px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -64,6 +69,11 @@ body {
   border: 2px solid #af634cc1;
 }
 
+.editor-container .block-container input select {
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
 .canvas {
   position: absolute;
   right: 200px;
@@ -83,6 +93,17 @@ body {
   padding: 5px 10px;
   margin-bottom: 5px;
   cursor: grab;
+}
+
+.block input {
+  width: 8px;
+  /* Chrome, Safari, Edge, Opera */
+}
+
+.block input input::-webkit-outer-spin-button,
+.block input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .block:hover {
